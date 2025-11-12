@@ -38,11 +38,40 @@ window.addEventListener("load", function() {
 	console.log("New location is ", video.currentTime);
  });
 
- document.querySelector("#mute").addEventListener("click", function() {
-	console.log("Mute");
-	video.muted = true;
-	
+document.querySelector("#slider").addEventListener("input", function() {
+	let oldVolume = video.volume / 10;
+	console.log("Current volume is ", video.volume)
+    let newVolume = this.value / 100;
+    video.volume = newVolume; 
+    document.querySelector("#volume").textContent = this.value + "%";
+    console.log("New volume is ", newVolume);
+});
+
+ document.querySelector("#mute").addEventListener("click", function() {	
+
+	 if (video.muted === false) {
+        video.muted = true;
+        mute.innerHTML = "Unmute";
+        console.log("Mute");
+    } else {
+        video.muted = false;
+        mute.innerHTML = "Mute";
+        console.log("Unmute");
+    }
  });
+
+ document.querySelector("#vintage").addEventListener("click", function() {
+    console.log("Old School");
+    video.classList.add("oldSchool");
+});
+
+document.querySelector("#orig").addEventListener("click", function() {
+    console.log("Original");
+    video.classList.remove("oldSchool");
+});
+
+
+
 
 
 
